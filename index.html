@@ -145,4 +145,304 @@ detailPart=function(title,value){
 };
 
 applyReadingLanguages(readingLanguages[0],readingLanguages[1]||'');
-</script></body></html>
+</script><style>
+.az900-dialog { color:var(--ink,#28352e); background:var(--paper,#fffdf8); border:1px solid #9ba99d; border-radius:18px; padding:clamp(16px,4vw,36px); width:min(960px,94vw); max-height:92dvh; overflow:auto; box-sizing:border-box; }
+.dark .az900-dialog, body.dark .az900-dialog { color:#e8f1e9; background:#202b27; }
+.az900-dialog::backdrop { background:#0f241bb0; }
+.az900-head,.az900-meta,.az900-actions { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.az900-head h2 { margin:.35em 0; }
+.az900-meta { padding:.6em 0; }
+.az900-meta strong { font-variant-numeric:tabular-nums; font-size:1.35em; }
+.az900-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr)); gap:12px; margin:1em 0; }
+.az900-card { text-align:left; padding:16px; background:transparent; color:inherit; border:1px solid #839789; border-radius:12px; display:grid; gap:7px; cursor:pointer; }
+.az900-card strong { font-size:1.3em; }
+.az900-card small { font-weight:700; }
+.az900-card:disabled { opacity:.45; cursor:default; }
+.az900-dialog fieldset { min-width:0; margin:16px 0; border:1px solid #839789; border-radius:12px; padding:14px; }
+.az900-dialog legend { font-weight:700; max-width:100%; }
+.az900-option { display:flex; align-items:center; gap:10px; padding:10px; border-radius:7px; }
+.az900-option:hover { background:#779d8020; }
+.az900-option select { max-width:100%; margin-left:auto; }
+.az900-palette { display:grid; grid-template-columns:repeat(auto-fit,minmax(46px,1fr)); gap:6px; margin:1em 0; }
+.az900-palette .btn { padding:7px 4px; }
+.az900-palette .az900-done { box-shadow:inset 0 -3px #5b936e; }
+.az900-palette [aria-current=step] { outline:2px solid #a16a20; }
+.az900-solutions details { padding:10px; border-bottom:1px solid #839789; }
+.az900-entry { white-space:nowrap; }
+@media(max-width:600px) { .az900-option:has(select) { align-items:stretch; flex-direction:column; } .az900-option select { margin-left:0; } }
+</style>
+<script id="az900-bank" type="application/json">[["C", "Public cloud", "A provider offers computing resources over the internet to multiple customers.", "A startup wants provider-operated infrastructure without owning a datacenter or requiring dedicated infrastructure.", "Private cloud;Hybrid cloud;On-premises only", "Public clouds provide shared provider infrastructure with isolated customer workloads."], ["C", "Private cloud", "Cloud resources are dedicated to one organization.", "A company wants cloud-style self-service and orchestration on infrastructure reserved exclusively for it.", "Public cloud;Hybrid cloud;Software as a service", "A private cloud is for exclusive use by one organization and can be hosted on or off premises."], ["C", "Hybrid cloud", "Private infrastructure and public cloud operate together.", "A hospital retains sensitive systems locally and integrates them with an Azure analytics workload.", "Private cloud only;Public cloud only;On-premises only", "Hybrid combines on-premises or private infrastructure with public cloud services."], ["C", "Consumption-based pricing", "Charges depend on measured usage.", "A prototype may sit idle for weeks. The team wants its variable bill to reflect measured service usage.", "Fixed capacity purchase;Capital expenditure;Perpetual license", "Consumption charges follow the service's billing meters."], ["C", "Elasticity", "Capacity expands and contracts as demand changes.", "A booking app needs more capacity during ticket release and less once the rush ends.", "High availability;Disaster recovery;Predictability", "Elasticity is the ability to adjust resources with fluctuating demand."], ["C", "High availability", "A service keeps operating despite component failures.", "The HRMS must continue serving users if a single app instance fails.", "Elasticity;Capital expenditure;Data retention", "Redundant healthy instances can keep a service available when one fails."], ["C", "Infrastructure as a service", "You manage the guest operating system on rented compute.", "A legacy payroll package requires an OS-level driver and custom patch schedule.", "Platform as a service;Software as a service;Serverless functions", "IaaS gives the customer control of the guest OS while the provider manages physical infrastructure."], ["C", "Platform as a service", "You deploy application code on a provider-managed application platform.", "A team wants to deploy a web API without maintaining its guest OS.", "Infrastructure as a service;Software as a service;Private datacenter", "PaaS shifts OS and platform maintenance to the provider while the customer manages application code and data."], ["C", "Software as a service", "You use a complete hosted application.", "HR wants ready-to-use hosted email and collaboration rather than building an application.", "Infrastructure as a service;Platform as a service;Serverless functions", "SaaS delivers a finished application. Customers still manage their identities, data and access settings as applicable."], ["C", "Serverless computing", "Event-driven code runs on provider-managed infrastructure.", "Resize a photo when a file is uploaded without running a dedicated worker VM.", "Dedicated virtual machine;Manual scaling;Capital expenditure", "Serverless lets developers focus on code and triggers while the provider manages infrastructure."], ["C", "Operational expenditure", "Ongoing operating costs are paid as they are incurred.", "Finance wants monthly charges for cloud usage instead of buying physical servers upfront.", "Capital expenditure;Resource tagging;Disaster recovery", "Cloud usage is typically an operating expense. Buying hardware upfront is a capital expense."], ["A", "Availability zones", "Separate datacenter groups within a region.", "A regional application must survive a datacenter-level failure without moving to a different region.", "Resource groups;Region pairs;Subscriptions", "Zones are physically separated within a region. The service and deployment must support zonal resilience."], ["A", "Azure region", "A geographic area containing Azure datacenters.", "Choose a location for an application based on latency, residency and service availability.", "Resource group;Tenant;Availability set", "Regions provide geographic deployment choices. Service and SKU availability can differ by region."], ["A", "Management group", "A scope used to organize multiple subscriptions.", "An enterprise wants to assign one governance policy above several subscriptions.", "Resource group;Virtual network;Availability zone", "Management groups sit above subscriptions and support inherited governance."], ["A", "Subscription", "A boundary for resource management and billing.", "Separate development and production billing scopes while keeping one identity directory.", "Resource group;Availability zone;Virtual network", "Subscriptions organize resources and provide management and billing boundaries."], ["A", "Resource group", "A logical container for related Azure resources.", "Group an API, database and storage account by workload lifecycle so the team can manage them together.", "Tenant;Region;Management group", "A resource group groups related resources and has its own management scope."], ["A", "Azure Virtual Machines", "Azure compute with control over the guest operating system.", "Lift and shift an old Windows workload requiring administrator access and custom IIS modules.", "Azure App Service;Azure Functions;Azure Blob Storage", "VMs give OS-level control. The customer manages the guest OS and application."], ["A", "Azure App Service", "Managed hosting for web applications and APIs.", "Publish an ASP.NET web API without maintaining the operating system or orchestrating containers.", "Azure Virtual Machines;Azure Files;Azure DNS", "App Service provides a managed platform for hosting web apps and APIs."], ["A", "Azure Functions", "A service for running code in response to triggers.", "Run short processing code each time a message arrives on a queue.", "Azure Virtual Desktop;Azure Files;Azure DNS", "Functions use triggers to execute event-driven code."], ["A", "Azure Virtual Desktop", "Managed access to remote Windows desktops and apps.", "Remote employees need centrally hosted Windows desktops and applications.", "Azure App Service;Azure Functions;Azure Blob Storage", "Azure Virtual Desktop delivers virtual desktops and remote applications."], ["A", "VNet peering", "A private connection between Azure virtual networks.", "Two Azure VNets need direct private connectivity without routing through the public internet.", "Azure DNS;Azure VPN Gateway;Network security group", "Peering connects VNets over the Microsoft backbone. Routing and security rules still apply."], ["A", "Azure VPN Gateway", "Encrypted connectivity over the public internet.", "Connect a branch network to Azure using an IPsec tunnel over its existing internet connection.", "ExpressRoute;Azure DNS;Azure Front Door", "VPN Gateway can provide encrypted site-to-site connectivity over the internet."], ["A", "Azure ExpressRoute", "Private connectivity to Microsoft cloud services through a connectivity provider.", "A datacenter needs a private circuit to Microsoft cloud services that avoids the public internet.", "Azure VPN Gateway;Azure DNS;VNet peering", "ExpressRoute connects an on-premises network privately via a connectivity provider."], ["A", "Azure Blob Storage", "Object storage for unstructured data.", "Store uploaded product photos, PDF files and archived log exports as objects.", "Azure Files;Azure Queue Storage;Azure Virtual Desktop", "Blob Storage stores unstructured object data in containers."], ["A", "Azure Files", "Managed file shares accessible using standard file protocols.", "Migrate a shared SMB folder used by a legacy application without maintaining a file-server VM.", "Azure Blob Storage;Azure Queue Storage;Azure Functions", "Azure Files offers managed file shares. SMB is useful for file-share compatibility."], ["A", "Microsoft Entra ID", "Cloud identity and access management for users and applications.", "Employees need centrally managed identities and single sign-on to cloud apps.", "Azure Policy;Azure Monitor;Microsoft Defender for Cloud", "Microsoft Entra ID authenticates identities and supports cloud application access."], ["A", "Azure RBAC", "Role assignments grant Azure resource access at a scope.", "Give analysts read-only access to resources in one resource group.", "Azure Policy;Resource lock;Azure Budget", "RBAC answers who can do what at a specific scope."], ["G", "Azure Policy", "Evaluate or enforce organizational standards on resources.", "Deny deployments outside approved Azure regions across subscriptions.", "Azure RBAC;Azure Monitor;Azure Advisor", "Policy evaluates resource configuration and can deny noncompliant deployments."], ["G", "Resource lock", "Protect Azure resources from management-plane deletion or changes.", "Allow normal updates to an app resource while preventing accidental deletion.", "Azure Budget;Azure RBAC Reader;Resource tag", "A CanNotDelete lock blocks management-plane deletion while allowing permitted modifications."], ["G", "Resource tags", "Key-value metadata used to categorize Azure resources.", "Finance wants to group supported resource costs by cost center.", "Management lock;Azure Service Health;Azure Arc", "Tags label resources for organization and cost reporting. Inheritance requires configuration."], ["G", "Azure Pricing Calculator", "Estimate anticipated costs before deployment.", "Estimate the monthly cost of a proposed combination of VMs and storage.", "Cost analysis;Azure Advisor;Azure Service Health", "The Pricing Calculator estimates costs from inputs such as SKU, location and expected usage."], ["G", "Cost analysis", "Explore recorded Azure cost across scopes and periods.", "Finance wants to identify which deployed service generated a charge last week.", "Azure Pricing Calculator;Azure Policy;Azure Resource Health", "Cost analysis helps investigate actual or forecast costs by scope, time and resource."], ["G", "Azure budgets", "Track spending against a threshold and send notifications.", "Alert owners when forecast spending is approaching the monthly target.", "Resource lock;Azure Policy;Azure Resource Health", "Budgets can notify when thresholds are reached. Automated remediation requires separate setup."], ["G", "Azure Resource Manager templates", "Declarative infrastructure deployment from a JSON template.", "Deploy the same declared resources repeatedly from a JSON definition.", "Azure Service Health;Azure Advisor;Resource tags", "ARM templates describe desired Azure resources and their configuration declaratively."], ["G", "Azure Cloud Shell", "A browser-accessible shell for Azure command-line tools.", "An operator on a locked-down laptop needs an authenticated Azure CLI session in a browser.", "Azure Policy;Azure Arc;Azure Resource Health", "Cloud Shell offers browser-based Azure CLI or PowerShell."], ["G", "Azure Arc", "Extend Azure management to resources outside Azure.", "Bring supported on-premises servers into Azure inventory and apply consistent management.", "Azure Functions;Azure ExpressRoute;Azure Virtual Desktop", "Azure Arc extends Azure management to supported hybrid and multicloud resources."], ["G", "Azure Advisor", "Personalized recommendations for improving Azure resources.", "Identify underused VMs that may be candidates for resizing to reduce cost.", "Azure Service Health;Application Insights;Azure Policy", "Advisor analyzes configurations and usage to make recommendations."], ["G", "Azure Service Health", "Personalized Azure incident and maintenance information.", "Find out whether an Azure platform incident affects services used by your subscriptions.", "Azure Resource Health;Azure Advisor;Azure Pricing Calculator", "Service Health provides relevant Azure service incidents and planned maintenance notices."], ["G", "Azure Resource Health", "Health status for an individual Azure resource.", "Check whether a particular VM's unavailability is associated with an Azure platform event.", "Azure Service Health;Azure Advisor;Azure Pricing Calculator", "Resource Health reports the health of individual supported resources and can provide troubleshooting information."], ["G", "Application Insights", "Application performance monitoring with requests and dependency telemetry.", "Find whether slow HRMS requests are correlated with slow SQL dependency calls.", "Azure Advisor;Azure Policy;Azure Service Health", "Application Insights helps diagnose application performance with telemetry such as dependencies, requests and exceptions."]]</script>
+<script id="az900-advanced" type="application/json">[["C", "HR wants hosted email. Payroll requires a custom kernel driver. The web team deploys its own code but wants the platform to patch the OS. Match each workload to its service model.", "Hosted email;Payroll with a custom kernel driver;Managed web runtime", "SaaS;IaaS;PaaS", "On-premises only;Private cloud", "SaaS delivers a finished product, IaaS permits guest OS control, and PaaS manages the runtime infrastructure."], ["C", "A retailer must survive a single instance failure, add capacity when demand spikes and restore service after a regional disaster. Match each requirement.", "Survive an instance failure;Adjust capacity to demand;Recover from regional loss", "High availability;Elasticity;Disaster recovery", "Predictability;Capital expenditure", "High availability handles component faults, elasticity changes capacity, and disaster recovery addresses larger disruptions."], ["A", "A payroll team keeps its database on premises. It needs a dedicated private circuit to Azure, private communication between two Azure VNets, and read access scoped to one resource group. Choose the three controls.", "On-premises private circuit;Private VNet-to-VNet connectivity;Read-only scoped resource access", "Azure ExpressRoute;VNet peering;Azure RBAC", "Azure VPN Gateway;Azure Policy;Network security group", "ExpressRoute provides the private circuit, peering connects Azure VNets, and RBAC grants scoped permissions."], ["A", "An app must tolerate a datacenter failure within its Azure region. Store shared files through SMB and serve uploaded photos as objects. Match each requirement to a capability.", "Resilience to a datacenter failure in the region;SMB shares;Object storage", "Availability zones;Azure Files;Azure Blob Storage", "Region pairs;Azure Queue Storage;Resource group", "Zones separate datacenter locations, Files provides SMB shares, and Blob Storage stores objects."], ["A", "A team must run a legacy service with OS-level drivers, publish a new HTTP API on a managed platform and execute short code when messages arrive. Match the compute options.", "Legacy service with a custom OS driver;Managed HTTP API hosting;Queue-triggered processing", "Azure Virtual Machines;Azure App Service;Azure Functions", "Azure Virtual Desktop;Azure Blob Storage", "VMs provide guest OS control, App Service hosts HTTP applications, and Functions runs event-triggered code."], ["G", "A central team must block creation in unapproved regions, protect one production resource against deletion while allowing updates and alert when forecast costs exceed budget. Choose the three controls.", "Deny deployments in unapproved regions;Block management-plane deletion;Notify on forecast cost", "Azure Policy;CanNotDelete resource lock;Azure budget", "Azure RBAC Reader;Resource tag;Azure Advisor", "Policy can deny deployments, a CanNotDelete lock blocks deletion, and budget thresholds can notify."], ["G", "A payroll outage has three independent checks. Match the platform-wide signal relevant to the subscription, an individual VM status and a slow SQL dependency observed by the app.", "Subscription-relevant Azure service incident;Individual VM health;Application SQL dependency duration", "Azure Service Health;Azure Resource Health;Application Insights", "Azure Advisor;Azure Pricing Calculator;Azure budgets", "Service Health reports relevant Azure incidents, Resource Health reports individual resource health, and Application Insights records application dependencies."], ["G", "Finance wants an estimate before deployment, a report on last month's recorded costs and an automatic warning on projected spending. Match each task to its tool.", "Estimate before deployment;Investigate recorded spend;Alert on forecast threshold", "Azure Pricing Calculator;Cost analysis;Azure budgets", "Azure Advisor;Resource tags;Azure Policy", "The calculator estimates proposed spend, Cost analysis examines actual cost, and budgets provide threshold alerts."]]</script>
+<script>
+(() => {
+  const bank = JSON.parse(document.getElementById('az900-bank').textContent);
+  const advanced = JSON.parse(document.getElementById('az900-advanced').textContent);
+  const domains = { C: 'Cloud concepts', A: 'Azure architecture and services', G: 'Azure management and governance' };
+  const levels = [
+    ['Easy', 'Recognize core terms and definitions.'],
+    ['Foundation', 'Distinguish closely related services and concepts.'],
+    ['Moderate', 'Choose a service for a practical requirement.'],
+    ['Challenging', 'Evaluate statements and match concepts to requirements.'],
+    ['Hard', 'Select multiple services for combined requirements.'],
+    ['Very Hard', 'Compare plausible designs across several constraints.'],
+    ['Hardest', 'Solve grouped case questions and validate service combinations.'],
+    ['Extreme', 'Resolve three-part designs and subtle trade-offs under time pressure.']
+  ];
+  const cases = {
+    C: 'A company is modernizing payroll and employee services. It must choose a cloud model, a service model and a way to pay for workloads.',
+    A: 'A company is moving its HRMS to Azure. Its team must choose deployment boundaries, connectivity, hosting, storage and identity services.',
+    G: 'An operations team governs several Azure subscriptions. It must manage deployment standards, spending, outages and application performance.'
+  };
+  const key = 'azure-handbook-az900-v1';
+  const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const shuffle = items => {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  };
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch {}
+  let attempt = saved.attempt || null;
+  const results = Array.isArray(saved.results) ? saved.results : [];
+  const persist = () => {
+    try { localStorage.setItem(key, JSON.stringify({ attempt, results: results.slice(0, 32) })); } catch {}
+  };
+
+  function question(item, index, level) {
+    const [domain, term, definition, scenario, distractors, explanation] = item;
+    const peers = bank.filter(other => other[0] === domain);
+    const position = peers.indexOf(item);
+    const second = peers[(position + 1 + level) % peers.length];
+    const third = peers[(position + 3 + level) % peers.length];
+    const choices = [term, ...distractors.split(';')];
+    const caseText = level >= 6 ? cases[domain] : '';
+    const base = { domain, caseText, explanation };
+    const single = (prompt, options, correct) => ({
+      ...base, type: 'single', prompt, options: shuffle(options), correct: [correct]
+    });
+    const matching = count => {
+      const rows = [item, second, third].slice(0, count);
+      return {
+        ...base, type: 'match', prompt: 'Match each requirement to the best answer.',
+        rows: rows.map(row => row[3]),
+        options: shuffle([...new Set(rows.map(row => row[1]).concat(distractors.split(';')))]),
+        correct: rows.map(row => row[1]), explanation: rows.map(row => row[5]).join(' ')
+      };
+    };
+    const multiple = count => {
+      const rows = [item, second, third].slice(0, count);
+      const correct = rows.map(row => row[1]);
+      const wrong = [...new Set(rows.flatMap(row => row[4].split(';')))].filter(value => !correct.includes(value));
+      return {
+        ...base, type: 'multi', prompt: 'Select exactly ' + count + ' answers, one for each requirement.',
+        rows: rows.map(row => row[3]), options: shuffle(correct.concat(wrong.slice(0, count + 1))),
+        correct, explanation: rows.map(row => row[5]).join(' ')
+      };
+    };
+    const yesNo = () => {
+      const correct = (index + level) % 3 === 0;
+      const proposed = correct ? term : choices[1 + index % 3];
+      return single(scenario + ' Would ' + proposed + ' meet this requirement?', ['Yes', 'No'], correct ? 'Yes' : 'No');
+    };
+    if (level === 0) return single('Which term matches this description? ' + definition, choices, term);
+    if (level === 1) {
+      const options = [definition, ...[second, third, peers[(position + 5) % peers.length]].map(row => row[2])];
+      return single('Which statement best describes ' + term + '?', options, definition);
+    }
+    if (level === 2) return index % 5 === 0 ? yesNo() : single(scenario + ' Which option best fits?', choices, term);
+    if (level === 3) return index % 3 === 0 ? matching(2) : index % 3 === 1 ? yesNo() : single(scenario + ' Which option best fits?', choices, term);
+    if (level === 4) return index % 3 === 0 ? multiple(2) : index % 3 === 1 ? matching(2) : yesNo();
+    if (level === 5) return index % 3 === 0 ? multiple(3) : index % 3 === 1 ? matching(3) : multiple(2);
+    if (level === 6) return index % 3 === 0 ? yesNo() : index % 3 === 1 ? multiple(3) : matching(3);
+    return index % 2 === 0 ? matching(3) : multiple(3);
+  }
+
+  function examQuestions(level) {
+    const questions = bank.map((item, index) => question(item, index, level));
+    if (level >= 6) {
+      const offsets = { C: 0, A: 0, G: 0 };
+      for (const [domain, prompt, requirements, answers, wrong, explanation] of advanced) {
+        const indices = questions.flatMap((q, i) => q.domain === domain ? [i] : []);
+        const offset = offsets[domain]++;
+        const type = level === 7 && offset % 2 === 0 ? 'multi' : 'match';
+        const correct = answers.split(';');
+        questions[indices[offset]] = {
+          domain, type, caseText: cases[domain], prompt: prompt.replace(/(?:Match|Choose) [^.]+[.]$/, '') + (type === 'multi' ? 'Select exactly ' + correct.length + ' answers.' : 'Match each requirement to the best answer.'),
+          rows: requirements.split(';'), correct, options: shuffle(correct.concat(wrong.split(';'))), explanation
+        };
+      }
+      return Object.keys(domains).flatMap(domain => shuffle(questions.filter(q => q.domain === domain)));
+    }
+    return shuffle(questions);
+  }
+
+  const dialog = document.createElement('dialog');
+  dialog.className = 'az900-dialog';
+  dialog.setAttribute('aria-labelledby', 'az900-title');
+  document.body.append(dialog);
+  const entry = document.createElement('button');
+  entry.type = 'button';
+  entry.className = 'btn primary az900-entry';
+  entry.textContent = 'AZ-900 Mock Exams';
+  document.querySelector('header .controls').prepend(entry);
+  setInterval(() => {
+    if (!attempt || attempt.finished) return;
+    const remaining = Math.max(0, Math.ceil((attempt.end - Date.now()) / 1000));
+    if (!remaining) { finish(true); return; }
+    const target = dialog.querySelector('[data-clock]');
+    if (target) target.textContent = time(remaining);
+  }, 250);
+  function time(seconds) {
+    return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+  }
+  function frame(title, content) {
+    dialog.innerHTML = '<div class="az900-head"><div><span class="tag">AZ-900 PRACTICE</span><h2 id="az900-title">' + escape(title) +
+      '</h2></div><button type="button" class="btn" data-action="close">Close</button></div>' + content;
+  }
+  function dashboard() {
+    frame('Azure Fundamentals exam room',
+      '<p>Eight practice forms with shared topics and different question formats. Each has 40 questions and a 45-minute timer. The skill mix is 11 Cloud, 16 Architecture and 13 Governance questions. Forms are in English to simulate the English exam.</p>' +
+      '<p class="tiny">Practice scoring uses whole-question accuracy. Microsoft uses a separate scaled score and does not publish the exact format for each exam. The timer keeps running when you close this window.</p>' +
+      (attempt?.finished ? '<button class="btn" data-action="resume">Review last result</button>' : '') +
+      (attempt && !attempt.finished ? '<button class="btn primary" data-action="resume">Resume ' + levels[attempt.level][0] + '</button>' : '') +
+      '<div class="az900-grid">' + levels.map(([name, description], index) => {
+        const best = Math.max(-1, ...results.filter(result => result.level === index).map(result => result.score));
+        return '<button class="az900-card" data-level="' + index + '"' + (attempt && !attempt.finished ? ' disabled' : '') +
+          '><small>LEVEL ' + (index + 1) + '</small><strong>' + name + '</strong><span>' + description +
+          '</span><small>' + (best >= 0 ? 'Best ' + best + ' / 40' : '40 questions · 45 min') + '</small></button>';
+      }).join('') + '</div><p><a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900" target="_blank" rel="noopener">Microsoft study guide and exam sandbox</a></p>');
+  }
+  function start(level) {
+    attempt = {
+      level, end: Date.now() + 45 * 60 * 1000, index: 0, answers: {}, flags: {},
+      questions: examQuestions(level)
+    };
+    persist();
+    showQuestion();
+  }
+  function answered(index) {
+    const response = attempt.answers[index] || [];
+    const q = attempt.questions[index];
+    return q.type === 'single' ? response.length === 1 : response.length === q.correct.length && response.every(Boolean);
+  }
+  function correct(index) {
+    if (!answered(index)) return false;
+    const response = attempt.answers[index], q = attempt.questions[index];
+    return q.type === 'match' ? q.correct.every((value, i) => response[i] === value)
+      : q.correct.every(value => response.includes(value));
+  }
+  function palette() {
+    return '<div class="az900-palette" aria-label="Question navigator">' + attempt.questions.map((_, i) =>
+      '<button class="btn' + (answered(i) ? ' az900-done' : '') + '" data-jump="' + i + '" aria-current="' + (i === attempt.index ? 'step' : 'false') +
+      '" aria-label="Question ' + (i + 1) + (answered(i) ? ', answered' : ', unanswered') + (attempt.flags[i] ? ', marked' : '') +
+      '">' + (i + 1) + (attempt.flags[i] ? ' ⚑' : '') + '</button>').join('') + '</div>';
+  }
+  function showQuestion() {
+    if (attempt.finished) { scorecard(); return; }
+    if (Date.now() >= attempt.end) { finish(true); return; }
+    const index = attempt.index, q = attempt.questions[index], response = attempt.answers[index] || [];
+    let inputs;
+    if (q.type === 'match') {
+      inputs = q.rows.map((row, i) => '<label class="az900-option"><span>' + escape(row) + '</span><select data-match="' + i + '">' +
+        '<option value="">Choose an answer</option>' + q.options.map(option => '<option' + (response[i] === option ? ' selected' : '') + '>' +
+        escape(option) + '</option>').join('') + '</select></label>').join('');
+    } else {
+      inputs = (q.rows ? '<ol>' + q.rows.map(row => '<li>' + escape(row) + '</li>').join('') + '</ol>' : '') +
+        q.options.map((option, i) => '<label class="az900-option"><input data-option="' + i + '" name="az900-answer" type="' +
+          (q.type === 'multi' ? 'checkbox' : 'radio') + '"' + (response.includes(option) ? ' checked' : '') +
+          '> <span>' + escape(option) + '</span></label>').join('');
+    }
+    frame(levels[attempt.level][0] + ' mock exam',
+      '<div class="az900-meta"><span>Question ' + (index + 1) + ' of 40 · ' + domains[q.domain] + '</span><strong data-clock>' +
+      time(Math.max(0, Math.ceil((attempt.end - Date.now()) / 1000))) + '</strong></div>' +
+      (q.caseText ? '<aside class="note">' + escape(q.caseText) + '</aside>' : '') +
+      '<fieldset><legend>' + escape(q.prompt) + '</legend>' + inputs + '</fieldset>' +
+      '<div class="az900-actions"><button class="btn" data-action="prev"' + (!index ? ' disabled' : '') +
+      '>Previous</button><button class="btn" data-action="flag" aria-pressed="' + !!attempt.flags[index] + '">' +
+      (attempt.flags[index] ? 'Unmark question' : 'Mark for review') + '</button><button class="btn" data-action="clear">Clear answer</button>' +
+      '<button class="btn primary" data-action="' + (index < 39 ? 'next' : 'review') + '">' +
+      (index < 39 ? 'Next' : 'Review exam') + '</button><button class="btn" data-action="review">Review &amp; submit</button></div>' +
+      '<div data-palette>' + palette() + '</div>');
+  }
+  function review() {
+    const answeredCount = attempt.questions.filter((_, i) => answered(i)).length;
+    frame('Review before submitting',
+      '<div class="az900-meta"><span>' + answeredCount + ' of 40 answered · ' + Object.values(attempt.flags).filter(Boolean).length +
+      ' marked</span><strong data-clock></strong></div><p>Select any question to revisit it, or submit to see your result.</p>' +
+      palette() + '<div class="az900-actions"><button class="btn" data-action="resume">Return to question</button>' +
+      '<button class="btn primary" data-action="submit">Submit exam</button></div>');
+  }
+  function finish(expired) {
+    if (attempt.finished) return;
+    attempt.finished = true;
+    attempt.expired = expired;
+    attempt.score = attempt.questions.filter((_, i) => correct(i)).length;
+    results.unshift({ level: attempt.level, score: attempt.score, date: Date.now() });
+    persist();
+    if (dialog.open) scorecard();
+  }
+  function scorecard() {
+    const breakdown = Object.entries(domains).map(([key, name]) => {
+      const indices = attempt.questions.flatMap((q, i) => q.domain === key ? [i] : []);
+      return '<li>' + name + ' · ' + indices.filter(correct).length + ' / ' + indices.length + '</li>';
+    }).join('');
+    frame('Your score · ' + attempt.score + ' / 40',
+      '<p>' + (attempt.expired ? 'Time expired and the exam was submitted. ' : '') +
+      'Practice accuracy ' + Math.round(attempt.score / 40 * 100) + '%.</p><ul>' + breakdown + '</ul>' +
+      '<button class="btn primary" data-action="dashboard">All exam levels</button><div class="az900-solutions">' +
+      attempt.questions.map((q, i) => {
+        const response = attempt.answers[i] || [];
+        const answerText = q.type === 'match' ? q.correct.map((value, j) => q.rows[j] + ' → ' + value).join(' · ') : q.correct.join(' · ');
+        return '<details><summary>' + (i + 1) + '. ' + (correct(i) ? 'Correct' : answered(i) ? 'Incorrect' : 'Unanswered or incomplete') +
+          ' · ' + escape(q.prompt) + '</summary>' +
+          (q.rows && q.type !== 'match' ? '<ol>' + q.rows.map(row => '<li>' + escape(row) + '</li>').join('') + '</ol>' : '') +
+          '<p><b>Your answer</b> ' + escape(response.filter(Boolean).join(' · ') || '—') +
+          '</p><p><b>Correct answer</b> ' + escape(answerText) + '</p><p>' + escape(q.explanation) + '</p></details>';
+      }).join('') + '</div>');
+  }
+  dialog.addEventListener('change', event => {
+    const target = event.target, index = attempt.index, q = attempt.questions[index];
+    if (Date.now() >= attempt.end) { finish(true); return; }
+    if (target.matches('[data-match]')) {
+      const response = attempt.answers[index] || Array(q.correct.length).fill('');
+      response[Number(target.dataset.match)] = target.value;
+      attempt.answers[index] = response;
+    } else if (target.matches('[data-option]')) {
+      attempt.answers[index] = Array.from(dialog.querySelectorAll('[data-option]:checked'),
+        input => q.options[Number(input.dataset.option)]);
+    }
+    persist();
+    dialog.querySelector('[data-palette]').innerHTML = palette();
+  });
+  dialog.addEventListener('click', event => {
+    const button = event.target.closest('button');
+    if (!button) return;
+    if (button.dataset.level !== undefined) { start(Number(button.dataset.level)); return; }
+    if (button.dataset.jump !== undefined) {
+      attempt.index = Number(button.dataset.jump); persist(); showQuestion(); return;
+    }
+    switch (button.dataset.action) {
+      case 'close': dialog.close(); return;
+      case 'dashboard': dashboard(); return;
+      case 'resume': showQuestion(); return;
+      case 'review': review(); return;
+      case 'submit': finish(Date.now() >= attempt.end); return;
+      case 'prev': attempt.index--; break;
+      case 'next': attempt.index++; break;
+      case 'flag': attempt.flags[attempt.index] = !attempt.flags[attempt.index]; break;
+      case 'clear': delete attempt.answers[attempt.index]; break;
+      default: return;
+    }
+    persist();
+    showQuestion();
+  });
+  entry.addEventListener('click', () => {
+    dialog.showModal();
+    dashboard();
+  });
+})();
+</script>
+</body></html>
